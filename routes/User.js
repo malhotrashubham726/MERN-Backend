@@ -19,13 +19,14 @@ router.post('/signup', [
 
     else {
         try {
-            // let salt=bcrypt.genSalt(10);
-            // const pwd=bcrypt.hash(req.body.password, salt);
-            console.log("Checkign");
+            let salt=bcrypt.genSalt(10);
+            const pwd=bcrypt.hash(req.body.password, salt);
+
+            console.log("Checking");
             const addUser=await uSchema.create({
                 name: req.body.name,
                 email: req.body.email,
-                password: req.body.password
+                password: pwd
             });
 
             res.send(addUser);
